@@ -2,7 +2,7 @@ doctype html
 html
   head
     title= settings.title
-    link(rel='stylesheet', href='/themes/#{settings.theme}/bootstrap.min.css')
+    link(rel='stylesheet', href='/themes/#{settings.theme}/bootstrap.css')
     link(rel='stylesheet', href='/vendor/jqplot/jquery.jqplot.css')
     link(rel='stylesheet', href='//cdn.datatables.net/plug-ins/725b2a2115b/integration/bootstrap/3/dataTables.bootstrap.css')
     link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
@@ -27,7 +27,7 @@ html
         function update_stats(){   
           $.ajax({url: '/ext/summary', success: function(json){
             $("#supply").text(json.data[0].supply);
-            $("#difficulty").text(json.data[0].difficulty);
+            $("#difficulty").text(json.data[0].difficulty.toFixed(12));
             $("#difficultyHybrid").text(json.data[0].difficultyHybrid);
             $("#hashrate").text(json.data[0].hashrate);
             $("#lastPrice").text(json.data[0].lastPrice.toFixed(8));
@@ -103,7 +103,7 @@ html
             if settings.display.movement == true
               li#movement 
                 a.navbar-link.loading(href='/movement') 
-                  span.fa.fa-money
+                  span.fa.fa-comments
                   span.menu-text #{settings.locale.menu_movement}
             if settings.display.network == true
               li#network
@@ -113,7 +113,7 @@ html
             if settings.display.richlist == true
               li#richlist
                 a.navbar-link(href='/richlist')
-                  span.fa.fa-btc
+                  span.fa.fa-dollar
                   span.menu-text #{settings.locale.menu_richlist}
             if settings.display.markets == true
               li#markets
@@ -125,10 +125,12 @@ html
                 a.navbar-link(href='/info')
                   span.glyphicon.glyphicon-info-sign
                   span.menu-text #{settings.locale.menu_api}
-    .col-md-12
+    .col-xs-12
+      img(src='#{settings.logo}', style='display: block; margin: auto; margin-top: -10px; margin-bottom: 20px; height:128px;')
+    .col-xs-12
       .row.text-center
-        .col-md-2.col-md-offset-1
-          .panel.panel-default.hidden-sm.hidden-xs
+        .col-xs-3.col-xs-offset-0
+          .panel.panel-default
             .panel-heading
               if settings.nethash_units == 'K'
                 strong #{settings.locale.network} (KH/s)
@@ -148,9 +150,9 @@ html
                <br>
                label#lblX1  
               else  
-               label#hashrate - 
-        .col-md-2
-          .panel.panel-default.hidden-sm.hidden-xs
+               tt#hashrate.text-success -
+        .col-xs-3
+          .panel.panel-default
             .panel-heading
               strong #{settings.locale.difficulty}
             .panel-body
@@ -159,11 +161,9 @@ html
                <br>
                label#difficultyHybrid -
               else
-               label#difficulty -
-        .col-md-2.col-sm-12
-          img(src='#{settings.logo}', style='margin-top:-15px;height:128px;')
-        .col-md-2
-          .panel.panel-default.hidden-sm.hidden-xs
+               tt#difficulty.text-danger -
+        .col-xs-3
+          .panel.panel-default
             .panel-heading
               strong #{settings.locale.ex_supply} (#{settings.symbol})
             .panel-body
@@ -172,9 +172,9 @@ html
                <br>
                label#lblX1
               else
-               label#supply -  
-        .col-md-2
-          .panel.panel-default.hidden-sm.hidden-xs
+               tt#supply.text-primary -
+        .col-xs-3
+          .panel.panel-default
             .panel-heading
               strong #{settings.markets.exchange} Price
             .panel-body
@@ -183,7 +183,7 @@ html
                <br>
                label#lblX1
               else
-               label#lastPrice - 
+               tt#lastPrice.text-dark -
                  
       .row.text-center(style='margin-top:10px;margin-bottom:20px;')
         form.form-inline(method='post', action='/search')      
@@ -192,35 +192,32 @@ html
             button.btn.btn-success(type='submit') #{settings.locale.ex_search_button}
     block content
     .navbar.navbar-default.navbar-fixed-bottom.hidden-xs
-      .col-md-4
-        if settings.display.twitter
-          ul.nav.navbar-nav
-            li.pull-left
-              a#twitter-icon(href="https://twitter.com/#{settings.twitter}", target='_blank')
-                span.glyphicon.fa.fa-twitter
-        if settings.display.facebook
-          ul.nav.navbar-nav
-            li.pull-left
-              a#facebook-icon(href="https://www.facebook.com/#{settings.facebook}", target='_blank')
-                span.glyphicon.fa.fa-facebook
-        if settings.display.googleplus
-          ul.nav.navbar-nav
-            li.pull-left
-              a#googleplus-icon(href="https://plus.google.com/#{settings.googleplus}", target='_blank')
-                span.glyphicon.fa.fa-google-plus
-        if settings.display.youtube
-          ul.nav.navbar-nav
-            li.pull-left
-              a#youtube-icon(href="https://www.youtube.com/channel/#{settings.youtube}", target='_blank')
-                span.glyphicon.fa.fa-youtube
-     .col-md-4
-        ul.nav
-          li.text-center(style='margin-left:80px;margin-right:80px;')
-            p(style='margin-top:15px;') 
-              a.navbar-link(href='https://github.com/iquidus/explorer', target='_blank') Powered by Iquidus Explorer 
-      span.connections
-        label#lblBlockcount.label.label-default -
-        label#lblConnections.label.label-default -
-
-
-              
+          .col-md-4
+            if settings.display.twitter
+              ul.nav.navbar-nav
+                li.pull-left
+                  a#twitter-icon(href="https://twitter.com/#{settings.twitter}", target='_blank')  
+                    span.glyphicon.fa.fa-twitter
+            if settings.display.facebook
+              ul.nav.navbar-nav
+                li.pull-left
+                  a#facebook-icon(href="https://www.facebook.com/#{settings.facebook}", target='_blank')
+                    span.glyphicon.fa.fa-facebook
+            if settings.display.googleplus
+              ul.nav.navbar-nav
+                li.pull-left
+                  a#googleplus-icon(href="https://plus.google.com/#{settings.googleplus}", target='_blank')
+                    span.glyphicon.fa.fa-google-plus
+            if settings.display.youtube
+              ul.nav.navbar-nav
+                li.pull-left
+                  a#youtube-icon(href="https://www.youtube.com/channel/#{settings.youtube}", target='_blank')
+                    span.glyphicon.fa.fa-youtube
+          .col-md-4
+            ul.nav
+              li.text-center(style='margin-left:80px;margin-right:80px; font-size:smaller;')
+                p(style='margin-top:17px;')
+                  a.navbar-link(href='https://github.com/iquidus/explorer', target='_blank') Powered by Iquidus Explorer
+          span.connections
+            label#lblBlockcount.label.label-primary(style='font-size:medium;') -
+            label#lblConnections.label.label-success(style='font-size:medium;') -

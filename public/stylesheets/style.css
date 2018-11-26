@@ -71,7 +71,7 @@ table {
 }
 
 table a:not(.btn),.table a:not(.btn){
-	text-decoration:none
+	/* text-decoration:none */
 }
 
 tr {
@@ -101,7 +101,7 @@ tr {
 }
 .connections {
 	position: absolute;
-	bottom: 15px;
+	bottom: 17px;
 	right: 15px;
 }
 
@@ -163,4 +163,3 @@ tr {
 	position: absolute;
 	bottom: 0px;
 }
-

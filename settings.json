@@ -5,15 +5,15 @@
 */
 {
   // name your instance!
-  "title": "IQUIDUS",
+  "title": "Sugarchain Block Explorer",
 
   "address": "127.0.0.1:3001",
 
   // coin name
-  "coin": "Darkcoin",
+  "coin": "Sugarchain",
 
   // coin symbol
-  "symbol": "DRK",
+  "symbol": "SUGAR",
 
   // logo
   "logo": "/images/logo.png",
@@ -26,6 +26,8 @@
   //     Cerulean, Cosmo, Cyborg, Darkly, Flatly, Journal, Lumen, Paper,
   //     Readable, Sandstone, Simplex, Slate, Spacelab, Superhero, United, Yeti
   // theme (see /public/themes for available themes)
+  //
+  // Cyborg Only! - css modified public/stylesheets/style.css & public/themes/Cyborg/bootstrap.css
   "theme": "Cyborg",
 
   // port to listen for requests on.
@@ -33,8 +35,8 @@
 
   // database settings (MongoDB)
   "dbsettings": {
-    "user": "iquidus",
-    "password": "3xp!0reR",
+    "user": "mongo-user",
+    "password": "mongo-pwd",
     "database": "explorerdb",
     "address": "localhost",
     "port": 27017
@@ -47,13 +49,13 @@
   // wallet settings
   "wallet": {
     "host": "localhost",
-    "port": 9332,
-    "user": "darkcoinrpc",
-    "pass": "123gfjk3R3pCCVjHtbRde2s5kzdf233sa"
+    "port": 7978,
+    "user": "username",
+    "pass": "password"
   },
 
   // confirmations
-  "confirmations": 40,
+  "confirmations": 3,
 
   // language settings
   "locale": "locale/en.json",
@@ -61,7 +63,7 @@
   // menu settings
   "display": {
     "api": true,
-    "markets": true,
+    "markets": false,
     "richlist": true,
     "twitter": true,
     "facebook": false,
@@ -81,17 +83,17 @@
 
   // ensure links on API page are valid
   "api": {
-    "blockindex": 1337,
-    "blockhash": "1733320247b15ca2262be646397d1ffd6be953fa638ebb8f5dcbb4c2b91b34f1",
-    "txhash": "f270cd3813254c9922a2e222a56ba745842d9112223a1394062e460b33d27b7e",
-    "address": "RBiXWscC63Jdn1GfDtRj8hgv4Q6Zppvpwb"
+    "blockindex": 1,
+    "blockhash": "0004403c18e68077b9de40f4a1c7d0333025f64e546acfc1a3f3a8fea38ced65",
+    "txhash": "cac8ce8ea0b21708cff5de54cf65a8f390acab247c2e5cec18930be81d5c5173",
+    "address": "sXf45kt5zK9Wzo89M7enqb9aRYD26f14EY"
   },
 
   // market settings
   //supported markets: bittrex, poloniex, yobit, empoex, bleutrade, cryptopia, ccex
   //default market is loaded by default and determines last price in header
   "markets": {
-    "coin": "JBS",
+    "coin": "SUGAR",
     "exchange": "BTC",
     "enabled": ["bittrex"],
     "cryptopia_id": "1658",
@@ -116,7 +118,7 @@
   },
 
   // twitter, facebook, googleplus, youtube
-  "twitter": "iquidus",
+  "twitter": "sugarchain_dev",
   "facebook": "yourfacebookpage",
   "googleplus": "yourgooglepluspage",
   "youtube": "youryoutubechannel",
@@ -125,12 +127,12 @@
   // ipstack_api_key: ipstack.com Geo IP. This is the replacement of http://freegeoip.net You need an API Key for the Requests 
   // YourIpstackAPIKey
   "peers": {
-    "ipstack_api_key": "YourIpstackAPIKey" 
+    "ipstack_api_key": "d9f6aea0df7b03e56051f2cf0d73d50f"
   },
-
+  
   //genesis
-  "genesis_tx": "65f705d2f385dc85763a317b3ec000063003d6b039546af5d8195a5ec27ae410",
-  "genesis_block": "b2926a56ca64e0cd2430347e383f63ad7092f406088b9b86d6d68c2a34baef51",
+  "genesis_tx": "09a754250024b34f2d2a8e0edbb43375fbb024ec6025edb243b32e50b6c20d76",
+  "genesis_block": "0005ab1f82e540826c218b634f82a99e292913303747244685d561d90bc06de5",
 
   //heavy (enable/disable additional heavy features)
   "heavy": false,
@@ -156,7 +158,7 @@
 
   // nethash unitd: sets nethash API return units
   // valid options: "P" (PH/s), "T" (TH/s), "G" (GH/s), "M" (MH/s), "K" (KH/s)
-  "nethash_units": "G",
+  "nethash_units": "K",
 
   // Address labels
   // example : "JhbrvAmM7kNpwA6wD5KoAsbtikLWWMNPcM": {"label": "This is a burn address", "type":"danger", "url":"http://example.com"}
