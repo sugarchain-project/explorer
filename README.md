@@ -143,12 +143,12 @@ npm install forever -g
 npm install forever-monitor
 ```
 
-### explorer start
+### [debug] explorer start
 ```
 forever start bin/cluster
 ```
 
-### explorer update every `15s` (sync.js peer.js)
+### [debug] explorer update every `15s` (sync.js peer.js)
 update first
 ```bash
 node scripts/sync.js index update && \
@@ -168,13 +168,59 @@ sleep 15.0;
 done
 ```
 
-### run.sh as daemon
+### [debug] run.sh as daemon
 ```bash
 setsid ./run.sh > /dev/null 2>&1 < /dev/null &
 ```
 
-### todo: cron & start.sh
-cron  
-https://github.com/cryptozeny/zny-nomp-kawaii  
-start.sh  
-https://gist.github.com/zeronug/5c66207c426a1d4d5c73cc872255c572  
+### [production] cron
+fix forever location for crontab
+```bash
+sudo ln -s $(which node) /usr/bin/node
+```
+
+make crontab
+```bash
+sudo crontab -e
+```
+
+```
+# daemon
+@reboot /root/sugarchain-v0.16.3/src/sugarchaind -server=1 -rpcuser=username -rpcpassword=password -txindex -daemon
+
+# explorer
+@reboot sleep 10  && cd /root/explorer/  && /root/.nvm/v0.10.28/bin/forever start bin/cluster
+
+# remove tmp (1m)
+* * * * * rm -f /root/explorer/tmp/index.pid
+
+# sync index (15s)
+* * * * * sleep 15  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/sync.js index update > /dev/null 2>&1
+* * * * * sleep 30  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/sync.js index update > /dev/null 2>&1
+* * * * * sleep 45  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/sync.js index update > /dev/null 2>&1
+* * * * * sleep 60  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/sync.js index update > /dev/null 2>&1
+
+# sync market (15s)
+* * * * * sleep 15  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/sync.js market > /dev/null 2>&1
+* * * * * sleep 30  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/sync.js market > /dev/null 2>&1
+* * * * * sleep 45  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/sync.js market > /dev/null 2>&1
+* * * * * sleep 60  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/sync.js market > /dev/null 2>&1
+
+# sync peer (15s)
+* * * * * sleep 15  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/peers.js > /dev/null 2>&1
+* * * * * sleep 30  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/peers.js > /dev/null 2>&1
+* * * * * sleep 45  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/peers.js > /dev/null 2>&1
+* * * * * sleep 60  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/peers.js > /dev/null 2>&1
+```
+
+### stop and restart
+```bash
+cd /root/explorer/ && forever stop bin/cluster
+cd /root/explorer/ && forever start bin/cluster
+```
+
+### check forever log
+```bash
+forever list
+tail -f /root/.forever/PwHy.log
+```
