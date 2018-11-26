@@ -23,12 +23,12 @@
 
   // Uses bootswatch themes (http://bootswatch.com/)
   // Valid options:
-  //     Cerulean, Cosmo, Cyborg, Darkly, Flatly, Journal, Lumen, Paper,
+  //     Sugar, Cerulean, Cosmo, Cyborg, Darkly, Flatly, Journal, Lumen, Paper,
   //     Readable, Sandstone, Simplex, Slate, Spacelab, Superhero, United, Yeti
   // theme (see /public/themes for available themes)
   //
-  // Cyborg Only! - css modified public/stylesheets/style.css & public/themes/Cyborg/bootstrap.css
-  "theme": "Cyborg",
+  // New theme added: Sugar
+  "theme": "Sugar",
 
   // port to listen for requests on.
   "port" : 3001,
