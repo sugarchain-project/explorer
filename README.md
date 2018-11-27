@@ -14,12 +14,7 @@ This call was removed in version 0.16.0. Use the appropriate fields from:
 - getwalletinfo: balance, keypoololdest, keypoolsize, paytxfee, unlocked_until, walletversion
 ```
 
-## MAKE A VPS FIRST
-```bash
-ssh root@123.123.123.123
-```
-
-## SETUP
+## install VPS server 
 
 ### locale all to `en_US.UTF-8`
 ```bash
@@ -34,21 +29,22 @@ sudo timedatectl set-timezone Asia/Seoul
 ```
 > LOGOUT/IN
 
+## install coind 
+
 ### wallet depends
 ```bash
 cd && \
 sudo add-apt-repository ppa:bitcoin/bitcoin -y && \
 sudo apt-get update -y && \
 sudo apt-get install -y \
-software-properties-common libdb4.8-dev libdb4.8++-dev build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils libboost-all-dev libminiupnpc-dev libzmq3-dev libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler libqrencode-dev && \
-cd
+software-properties-common libdb4.8-dev libdb4.8++-dev build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils libboost-all-dev libminiupnpc-dev libzmq3-dev libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler libqrencode-dev
 ```
 
-### wallet build
+### wallet build (check branch!)
 ```bash
+cd && \
 git clone git@github.com:cryptozeny/sugarchain-v0.16.3.git && \
 cd sugarchain-v0.16.3/ && \
-git checkout r4-yes-DGW-etc-brand-gene-icon && \
 ./autogen.sh && \
 ./configure && \
 make -j$(nproc)
@@ -62,8 +58,10 @@ if your VPS doesn't have enough memory (under 1GB)
 ### wallet run: explorer needs `-txindex` 
 for testing log `-printtoconsole` instead of `-daemon`
 ```bash
-./src/sugarchaind -server=1 -rpcuser=username -rpcpassword=password -txindex -daemon
+/root/sugarchain-v0.16.3/src/sugarchaind -server=1 -rpcuser=username -rpcpassword=password -txindex -daemon
 ```
+
+## install explorer 
 
 ### Nodejs (explorer needs node v0.10.28)
 ```bash
@@ -110,14 +108,14 @@ mongo
 > exit
 ```
 
-#### option: drop MongoDB
+### option: drop MongoDB
 ```bash
 use explorerdb;
 db.dropDatabase();
 db.dropUser("mongo-user")
 ```
 
-### explorer install (branch master)
+### explorer install (check branch)
 ```bash
 cd && \
 git clone git@github.com:sugarchain-project/explorer.git explorer && \
@@ -133,9 +131,9 @@ cp ./settings.json.sugarchain ./settings.json
 ### explorer test-run (각각 다른 터미널에서)
 ```bash
 npm start # term-1
-node scripts/sync.js index update # term-2 (run twice)
+node scripts/sync.js index update # term-2 (run twice: take a while...)
 ```
-> stop both
+> stop both after sync completed
 
 ### forever for Nodejs
 ```bash
@@ -213,14 +211,101 @@ sudo crontab -e
 * * * * * sleep 60  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/peers.js > /dev/null 2>&1
 ```
 
-### stop and restart
+### (OPTION) stop and restart
 ```bash
 cd /root/explorer/ && forever stop bin/cluster
 cd /root/explorer/ && forever start bin/cluster
+cd /root/explorer/ && forever restart bin/cluster
 ```
 
-### check forever log
+### (OPTION) check forever log
 ```bash
 forever list
 tail -f /root/.forever/PwHy.log
 ```
+
+## DNS
+setting up for website
+
+### firewall
+22 for SSH 
+80 for Website
+443 for Redirect
+7979 for Sugarchain
+ 
+```bash 
+sudo ufw status && \
+sudo ufw allow 22 && \
+sudo ufw allow 80 && \
+sudo ufw allow 443 && \
+sudo ufw allow 7979 && \
+sudo ufw enable && \
+sudo ufw status
+```
+
+### nginx
+website url is `explorer.sugarchain.org`
+```bash 
+sudo apt-get install -y nginx && \
+sudo mv /etc/nginx/sites-enabled/default /etc/nginx/sites-enabled/default.bak
+```
+
+make file
+```bash 
+sudo nano /etc/nginx/sites-available/explorer.sugarchain.org
+```
+
+paste it
+```json
+server {
+    listen 80;
+    server_name explorer.sugarchain.org;
+
+    location / {
+        proxy_set_header   X-Forwarded-For $remote_addr;
+        proxy_set_header   Host $http_host;
+        proxy_pass         "http://127.0.0.1:3001";
+    }
+}
+```
+
+make ln & restart nginx
+```bash 
+sudo ln -s \
+/etc/nginx/sites-available/explorer.sugarchain.org \
+/etc/nginx/sites-enabled/explorer.sugarchain.org && \
+sudo service nginx restart
+```
+
+### get a DNS name 
+AWS `route53` recommended
+Adds `A` record with `explorer`.
+Add nameserver to route53
+
+### SSL certbot
+```bash 
+cd && \
+git clone https://github.com/certbot/certbot && \
+cd certbot && \
+sudo service nginx restart && \
+LC_ALL=C ./certbot-auto run --nginx && \
+sudo service nginx reload
+```
+
+### cron for renew certbot
+```bash 
+crontab -e 
+```
+
+add it (everyday at 08:16)
+```bash 
+# SSL renew by certbot (everyday at 08:16)
+16 8 * * * $HOME/certbot/certbot-auto renew --no-self-upgrade --post-hook "/usr/sbin/service nginx reload"
+```
+
+> REBOOT 
+
+## MISC
+
+### (OPTION) change website URL  
+https://github.com/sugarchain-project/explorer/commit/2d29302470e1164d0aff9001bf2dbdcd486bec71
