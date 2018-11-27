@@ -7,7 +7,7 @@
   // name your instance!
   "title": "Sugarchain Block Explorer",
 
-  "address": "https://explorer-sugarchain.cryptozeny.com",
+  "address": "https://explorer.sugarchain.org",
 
   // coin name
   "coin": "Sugarchain",
