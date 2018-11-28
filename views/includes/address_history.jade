@@ -8,7 +8,7 @@ tbody
     - var time = format_unixtime(tx.timestamp)
     tr
       td.hidden-xs.text-center(style='font-family: Lucida Console, Monaco, monospace;') #{time}
-      td.hidden-xs.text-left(style='font-family: Lucida Console, Monaco, monospace; font-size: 80%;')
+      td.hidden-xs.text-left(style='font-family: Lucida Console, Monaco, monospace;')
         a(href='/tx/#{tx.txid}') #{tx.txid}
       - var done = false
       - var out = 0

@@ -41,7 +41,7 @@ block content
           dataSrc: function ( json ) {
             for ( var i=0;i<json.data.length; i++ ) {
               json.data[i]['blockindex'] = "<a href='/block/" + json.data[i]['blockhash'] + "'" + "style='font-family: Lucida Console, Monaco, monospace; text-align: center; display: block;" + "'>" + json.data[i]['blockindex'] + "</a>";
-              json.data[i]['txid'] = "<a href='/tx/" + json.data[i]['txid'] + "'" + "style='font-family: Lucida Console, Monaco, monospace; font-size: 80%;" + "'>" + json.data[i]['txid'] + "</a>";
+              json.data[i]['txid'] = "<a href='/tx/" + json.data[i]['txid'] + "'" + "style='font-family: Lucida Console, Monaco, monospace;" + "'>" + json.data[i]['txid'] + "</a>";
               json.data[i]['recipients'] = "<span style='font-family: Lucida Console, Monaco, monospace; text-align: center; display: block;" + "'>" + json.data[i]['vout'].length + "</span>";
               var amount = json.data[i]['total'] / 100000000;
               //- json.data[i]['total'] = "<span style='font-family: Lucida Console, Monaco, monospace; text-align: right; display: block;" + "'>" + amount.toFixed(8) + "</span>";

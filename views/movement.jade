@@ -42,7 +42,7 @@ block content
           dataSrc: function ( json ) {
             for ( var i=0;i<json.data.length; i++ ) {
               json.data[i]['timestamp'] = "<span style='font-family: Lucida Console, Monaco, monospace; text-align: center; display: block;" + "'>" + format_unixtime(json.data[i]['timestamp']); + "</span>";
-              json.data[i]['txid'] = "<a href='/tx/" + json.data[i]['txid'] + "'" + "style='font-family: Lucida Console, Monaco, monospace; font-size: 80%;" + "'>" + json.data[i]['txid'] + "</a>";
+              json.data[i]['txid'] = "<a href='/tx/" + json.data[i]['txid'] + "'" + "style='font-family: Lucida Console, Monaco, monospace;" + "'>" + json.data[i]['txid'] + "</a>";
               var amount = json.data[i]['total'] / 100000000;
               if (amount > '#{flagb}') {
                 json .data[i]['total'] = "<span class='text-danger' style='font-family: Lucida Console, Monaco, monospace; text-align: right; display: block;" + "'>" + amount.toFixed(8) + "</span>";

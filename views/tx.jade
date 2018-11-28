@@ -23,7 +23,7 @@ block content
           if confirms >= confirmations                
             tr.success
                 td(style='font-family: Lucida Console, Monaco, monospace;') #{confirms}
-                td.hidden-xs(style='font-family: Lucida Console, Monaco, monospace; font-size: 80%;')
+                td.hidden-xs(style='font-family: Lucida Console, Monaco, monospace;')
                   a(href='/block/#{tx.blockhash}') #{tx.blockhash}
                 td(style='font-family: Lucida Console, Monaco, monospace;') #{time}
                 td.view_tx  
@@ -33,7 +33,7 @@ block content
             if confirms < (confirmations / 2)
               tr.danger
                 td(style='font-family: Lucida Console, Monaco, monospace;') #{confirms}
-                td.hidden-xs(style='font-family: Lucida Console, Monaco, monospace; font-size: 80%;')
+                td.hidden-xs(style='font-family: Lucida Console, Monaco, monospace;')
                   a(href='/block/#{tx.blockhash}') #{tx.blockhash}
                 td(style='font-family: Lucida Console, Monaco, monospace;') #{time}
                 td.view_tx  
@@ -42,7 +42,7 @@ block content
             else
               tr.warning
                 td(style='font-family: Lucida Console, Monaco, monospace;') #{confirms}
-                td.hidden-xs(style='font-family: Lucida Console, Monaco, monospace; font-size: 80%;')
+                td.hidden-xs(style='font-family: Lucida Console, Monaco, monospace;')
                   a(href='/block/#{tx.blockhash}') #{tx.blockhash}
                 td(style='font-family: Lucida Console, Monaco, monospace;') #{time}
                 td.view_tx  
@@ -74,10 +74,10 @@ block content
                     else
                       - var ramount = r.amount / 100000000
                       tr
-                        td(style='font-family: Lucida Console, Monaco, monospace; font-size: 80%;')
+                        td(style='font-family: Lucida Console, Monaco, monospace;')
                           a.loading(href='/address/#{r.addresses}') 
                             =r.addresses
-                        td.danger.hidden-xs.text-right(style='font-family: Lucida Console, Monaco, monospace; font-size: 90%;') #{ramount.toFixed(8)}
+                        td.danger.hidden-xs.text-right(style='font-family: Lucida Console, Monaco, monospace;') #{ramount.toFixed(8)}
                       //- tr.hidden-lg.hidden-md
                       //-     td.danger #{ramount.toFixed(8)} #{settings.symbol}
                 else
@@ -98,9 +98,9 @@ block content
                     - var ramount = r.amount / 100000000  
                     tr
                       td 
-                        a.loading(style='font-family: Lucida Console, Monaco, monospace; font-size: 80%;' href='/address/#{r.addresses}')
+                        a.loading(style='font-family: Lucida Console, Monaco, monospace;' href='/address/#{r.addresses}')
                           =r.addresses 
-                      td.success.hidden-xs.text-right(style='font-family: Lucida Console, Monaco, monospace; font-size: 90%;') #{ramount.toFixed(8)}
+                      td.success.hidden-xs.text-right(style='font-family: Lucida Console, Monaco, monospace;') #{ramount.toFixed(8)}
                     //- tr.hidden-lg.hidden-md
                     //-   td.success #{ramount.toFixed(8)} #{settings.symbol}
                   else
