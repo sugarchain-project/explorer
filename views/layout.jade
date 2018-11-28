@@ -156,7 +156,7 @@ html
                <br>
                label#lblX1  
               else  
-               tt#hashrate.text-success -
+               #hashrate.text-success(style='font-family: Lucida Console, Monaco, monospace;') -
         .col-xs-3
           .panel.panel-default
             .panel-heading
@@ -167,7 +167,7 @@ html
                <br>
                label#difficultyHybrid -
               else
-               tt#difficulty.text-danger -
+               #difficulty.text-danger(style='font-family: Lucida Console, Monaco, monospace;') -
         .col-xs-3
           .panel.panel-default
             .panel-heading
@@ -178,7 +178,7 @@ html
                <br>
                label#lblX1
               else
-               tt#supply.text-primary -
+               #supply.text-primary(style='font-family: Lucida Console, Monaco, monospace;') -
         .col-xs-3
           .panel.panel-default
             .panel-heading
@@ -189,7 +189,7 @@ html
                <br>
                label#lblX1
               else
-               tt#lastPrice.text-dark -
+               #lastPrice.text-dark(style='font-family: Lucida Console, Monaco, monospace;') -
                  
       .row.text-center(style='margin-top:10px;margin-bottom:20px;')
         form.form-inline(method='post', action='/search')      
