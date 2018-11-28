@@ -8,7 +8,7 @@ block content
     .panel.panel-default
       .panel-heading.hidden-xs
         strong #{settings.symbol} TXID:
-        span(style='font-family:monospace; color:white')  #{tx.txid}
+        span(style='font-family: Lucida Console, Monaco, monospace; color:white')  #{tx.txid}
         a(href='/api/getrawtransaction?txid=#{tx.txid}&decrypt=1')
           span.glyphicon.glyphicon-info-sign.iquidus.pull-right
       table.table.table-bordered.table-striped.summary-table 
@@ -22,29 +22,29 @@ block content
           - var confirms = (blockcount - tx.blockindex);
           if confirms >= confirmations                
             tr.success
-                td(style='font-family:monospace;') #{confirms}
-                td.hidden-xs(style='font-family:monospace; font-size: 80%;')
+                td(style='font-family: Lucida Console, Monaco, monospace;') #{confirms}
+                td.hidden-xs(style='font-family: Lucida Console, Monaco, monospace; font-size: 80%;')
                   a(href='/block/#{tx.blockhash}') #{tx.blockhash}
-                td(style='font-family:monospace;') #{time}
+                td(style='font-family: Lucida Console, Monaco, monospace;') #{time}
                 td.view_tx  
                   a(href='/block/#{tx.blockhash}')
                     span.glyphicon.glyphicon-eye-open 
           else
             if confirms < (confirmations / 2)
               tr.danger
-                td(style='font-family:monospace;') #{confirms}
-                td.hidden-xs(style='font-family:monospace; font-size: 80%;')
+                td(style='font-family: Lucida Console, Monaco, monospace;') #{confirms}
+                td.hidden-xs(style='font-family: Lucida Console, Monaco, monospace; font-size: 80%;')
                   a(href='/block/#{tx.blockhash}') #{tx.blockhash}
-                td(style='font-family:monospace;') #{time}
+                td(style='font-family: Lucida Console, Monaco, monospace;') #{time}
                 td.view_tx  
                   a(href='/block/#{tx.blockhash}')
                     span.glyphicon.glyphicon-eye-open 
             else
               tr.warning
-                td(style='font-family:monospace;') #{confirms}
-                td.hidden-xs(style='font-family:monospace; font-size: 80%;')
+                td(style='font-family: Lucida Console, Monaco, monospace;') #{confirms}
+                td.hidden-xs(style='font-family: Lucida Console, Monaco, monospace; font-size: 80%;')
                   a(href='/block/#{tx.blockhash}') #{tx.blockhash}
-                td(style='font-family:monospace;') #{time}
+                td(style='font-family: Lucida Console, Monaco, monospace;') #{time}
                 td.view_tx  
                   a(href='/block/#{tx.blockhash}')
                     span.glyphicon.glyphicon-eye-open
@@ -74,10 +74,10 @@ block content
                     else
                       - var ramount = r.amount / 100000000
                       tr
-                        td(style='font-family:monospace; font-size: 80%;')
+                        td(style='font-family: Lucida Console, Monaco, monospace; font-size: 80%;')
                           a.loading(href='/address/#{r.addresses}') 
                             =r.addresses
-                        td.danger.hidden-xs.text-right(style='font-family:monospace; font-size: 90%;') #{ramount.toFixed(8)}
+                        td.danger.hidden-xs.text-right(style='font-family: Lucida Console, Monaco, monospace; font-size: 90%;') #{ramount.toFixed(8)}
                       //- tr.hidden-lg.hidden-md
                       //-     td.danger #{ramount.toFixed(8)} #{settings.symbol}
                 else
@@ -98,9 +98,9 @@ block content
                     - var ramount = r.amount / 100000000  
                     tr
                       td 
-                        a.loading(style='font-family:monospace; font-size: 80%;' href='/address/#{r.addresses}')
+                        a.loading(style='font-family: Lucida Console, Monaco, monospace; font-size: 80%;' href='/address/#{r.addresses}')
                           =r.addresses 
-                      td.success.hidden-xs.text-right(style='font-family:monospace; font-size: 90%;') #{ramount.toFixed(8)}
+                      td.success.hidden-xs.text-right(style='font-family: Lucida Console, Monaco, monospace; font-size: 90%;') #{ramount.toFixed(8)}
                     //- tr.hidden-lg.hidden-md
                     //-   td.success #{ramount.toFixed(8)} #{settings.symbol}
                   else

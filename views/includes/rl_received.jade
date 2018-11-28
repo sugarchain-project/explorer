@@ -14,10 +14,10 @@
         - count = count + 1
         - var itemFixed = item.received / 100000000
         tr
-          td(style='text-align:center; font-family:monospace; font-size:100%;')
+          td(style='text-align:center; font-family: Lucida Console, Monaco, monospace; font-size:100%;')
             =count
           td
-            a(style='text-align:left; font-family:monospace; font-size:100%;' href='/address/#{item.a_id}') #{item.a_id}
+            a(style='text-align:left; font-family: Lucida Console, Monaco, monospace; font-size:100%;' href='/address/#{item.a_id}') #{item.a_id}
             include ./rl_labels.jade
-          td.hidden-xs(style='text-align:right; font-family:monospace; font-size:100%;')
+          td.hidden-xs(style='text-align:right; font-family: Lucida Console, Monaco, monospace; font-size:100%;')
             =itemFixed.toFixed(8)
