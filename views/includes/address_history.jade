@@ -5,7 +5,7 @@ thead
     th.text-center #{settings.symbol}
 tbody
   each tx in txs
-    - var time = new Date(tx.timestamp).toTimeString();
+    - var time = format_unixtime(tx.timestamp)
     tr
       td.hidden-xs.text-center(style='font-family:monospace;') #{time}
       td.hidden-xs.text-left(style='font-family:monospace; font-size: 80%;')
