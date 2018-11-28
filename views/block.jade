@@ -12,7 +12,7 @@ block content
             a(href='/block/#{block.previousblockhash}')
               span.glyphicon.glyphicon-chevron-left.iquidus.block-last(data-toggle='tooltip', data-placement='top', title='#{settings.locale.block_previous}')  
             strong.hidden-xs #{settings.symbol} BLOCK:
-            span(style='font-family: Lucida Console, Monaco, monospace; color:white;')  #{block.hash}
+            span(style='font-family: Ubuntu Mono; color:white;')  #{block.hash}
           else
             strong.hidden-xs(style='margin-left:10px;') #{settings.symbol} #{settings.locale.ex_block}: #{block.hash}
           if block.nextblockhash != null 
@@ -36,40 +36,40 @@ block content
           if block.confirmations >= confirmations                
             tr.success
               - var block_size = block.size/1024
-              td(style='font-family: Lucida Console, Monaco, monospace;') #{block.height}
-              td(style='font-family: Lucida Console, Monaco, monospace;') #{block.difficulty.toFixed(16)}
-              td(style='font-family: Lucida Console, Monaco, monospace;') #{block.confirmations}
+              td(style='font-family: Ubuntu Mono;') #{block.height}
+              td(style='font-family: Ubuntu Mono;') #{block.difficulty.toFixed(16)}
+              td(style='font-family: Ubuntu Mono;') #{block.confirmations}
               if settings.heavy == true
-                td(style='font-family: Lucida Console, Monaco, monospace;')  #{block.vote}
-              td.hidden-xs(style='font-family: Lucida Console, Monaco, monospace;') #{block_size.toFixed(2)}
-              td.hidden-xs(style='font-family: Lucida Console, Monaco, monospace;') #{block.bits}
-              td.hidden-xs(style='font-family: Lucida Console, Monaco, monospace;') #{block.nonce}
-              td.hidden-xs(style='font-family: Lucida Console, Monaco, monospace;') #{time}
+                td(style='font-family: Ubuntu Mono;')  #{block.vote}
+              td.hidden-xs(style='font-family: Ubuntu Mono;') #{block_size.toFixed(2)}
+              td.hidden-xs(style='font-family: Ubuntu Mono;') #{block.bits}
+              td.hidden-xs(style='font-family: Ubuntu Mono;') #{block.nonce}
+              td.hidden-xs(style='font-family: Ubuntu Mono;') #{time}
           else
             if block.confirmations < (confirmations / 2)
               tr.danger
                 - var block_size = block.size/1024
-                td(style='font-family: Lucida Console, Monaco, monospace;') #{block.height}
-                td(style='font-family: Lucida Console, Monaco, monospace;') #{block.difficulty.toFixed(16)}
-                td(style='font-family: Lucida Console, Monaco, monospace;') #{block.confirmations}
+                td(style='font-family: Ubuntu Mono;') #{block.height}
+                td(style='font-family: Ubuntu Mono;') #{block.difficulty.toFixed(16)}
+                td(style='font-family: Ubuntu Mono;') #{block.confirmations}
                 if settings.heavy == true
-                  td(style='font-family: Lucida Console, Monaco, monospace;')  #{block.vote}
-                td.hidden-xs(style='font-family: Lucida Console, Monaco, monospace;') #{block_size.toFixed(2)}
-                td.hidden-xs(style='font-family: Lucida Console, Monaco, monospace;') #{block.bits}
-                td.hidden-xs(style='font-family: Lucida Console, Monaco, monospace;') #{block.nonce}
-                td.hidden-xs(style='font-family: Lucida Console, Monaco, monospace;') #{time}
+                  td(style='font-family: Ubuntu Mono;')  #{block.vote}
+                td.hidden-xs(style='font-family: Ubuntu Mono;') #{block_size.toFixed(2)}
+                td.hidden-xs(style='font-family: Ubuntu Mono;') #{block.bits}
+                td.hidden-xs(style='font-family: Ubuntu Mono;') #{block.nonce}
+                td.hidden-xs(style='font-family: Ubuntu Mono;') #{time}
             else
               tr.warning
                 - var block_size = block.size/1024
-                td(style='font-family: Lucida Console, Monaco, monospace;') #{block.height}
-                td(style='font-family: Lucida Console, Monaco, monospace;') #{block.difficulty.toFixed(16)}
-                td(style='font-family: Lucida Console, Monaco, monospace;') #{block.confirmations}
+                td(style='font-family: Ubuntu Mono;') #{block.height}
+                td(style='font-family: Ubuntu Mono;') #{block.difficulty.toFixed(16)}
+                td(style='font-family: Ubuntu Mono;') #{block.confirmations}
                 if settings.heavy == true
-                  td(style='font-family: Lucida Console, Monaco, monospace;')  #{block.vote}
-                td.hidden-xs(style='font-family: Lucida Console, Monaco, monospace;') #{block_size.toFixed(2)}
-                td.hidden-xs(style='font-family: Lucida Console, Monaco, monospace;') #{block.bits}
-                td.hidden-xs(style='font-family: Lucida Console, Monaco, monospace;') #{block.nonce}
-                td.hidden-xs(style='font-family: Lucida Console, Monaco, monospace;') #{time}
+                  td(style='font-family: Ubuntu Mono;')  #{block.vote}
+                td.hidden-xs(style='font-family: Ubuntu Mono;') #{block_size.toFixed(2)}
+                td.hidden-xs(style='font-family: Ubuntu Mono;') #{block.bits}
+                td.hidden-xs(style='font-family: Ubuntu Mono;') #{block.nonce}
+                td.hidden-xs(style='font-family: Ubuntu Mono;') #{time}
 
     if block.hash == settings.genesis_block
       .alert.alert-info(role='alert', style='text-align:center;')   
@@ -89,11 +89,11 @@ block content
             each txn in txs
               tr
                 td.hidden-xs
-                  a(style='font-family: Lucida Console, Monaco, monospace;' href='/tx/#{txn.txid}') #{txn.txid}
-                td(style='font-family: Lucida Console, Monaco, monospace;') #{txn.vout.length}
+                  a(style='font-family: Ubuntu Mono;' href='/tx/#{txn.txid}') #{txn.txid}
+                td(style='font-family: Ubuntu Mono;') #{txn.vout.length}
                 if txn.vout.length > 0
                   - var total = txn.total / 100000000
-                  td.text-right(style='font-family: Lucida Console, Monaco, monospace;') #{total.toFixed(8)}
+                  td.text-right(style='font-family: Ubuntu Mono;') #{total.toFixed(8)}
                 else
                   td #{txn.total.toFixed(8)}
                 td.view_tx 

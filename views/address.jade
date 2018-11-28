@@ -9,7 +9,7 @@ block content
     .panel.panel-default.panel-address-summary
       .panel-heading(style='position:relative;')        
         strong #{settings.symbol} ADDRESS:
-        span(style='font-family: Lucida Console, Monaco, monospace; color:white')  #{address.a_id}
+        span(style='font-family: Ubuntu Mono; color:white')  #{address.a_id}
         if settings.labels[address.a_id]
           if settings.labels[address.a_id].type  
             label(class='label label-#{settings.labels[address.a_id].type} pull-right hidden-xs', style='margin-left:15px;')
@@ -36,12 +36,12 @@ block content
         tbody             
           tr
             if settings.show_sent_received == true 
-              td.text-center(style='font-family: Lucida Console, Monaco, monospace; width:25%;') #{sent.toFixed(8)}<br>#{settings.symbol}
+              td.text-center(style='font-family: Ubuntu Mono; width:25%;') #{sent.toFixed(8)}<br>#{settings.symbol}
             if address.a_id !== 'coinbase'
               if settings.show_sent_received == true
-                td.text-center(style='font-family: Lucida Console, Monaco, monospace; width:25%;') #{received.toFixed(8)}<br>#{settings.symbol}
-              td.text-center(style='font-family: Lucida Console, Monaco, monospace; width:25%;') #{balance.toFixed(8)}<br>#{settings.symbol}
-              td.text-center(style='font-family: Lucida Console, Monaco, monospace; width:25%;')
+                td.text-center(style='font-family: Ubuntu Mono; width:25%;') #{received.toFixed(8)}<br>#{settings.symbol}
+              td.text-center(style='font-family: Ubuntu Mono; width:25%;') #{balance.toFixed(8)}<br>#{settings.symbol}
+              td.text-center(style='font-family: Ubuntu Mono; width:25%;')
                 img(src='/qr/#{address.a_id}' style='margin-top:0px; margin-bottom:0px;')
     .panel.panel-default.hidden-xs
       .panel-heading

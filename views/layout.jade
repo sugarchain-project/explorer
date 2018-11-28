@@ -7,6 +7,7 @@ html
     link(rel='stylesheet', href='//cdn.datatables.net/plug-ins/725b2a2115b/integration/bootstrap/3/dataTables.bootstrap.css')
     link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Ubuntu Mono')
     meta(property='og:url', content='https://explorer.sugarchain.org/')
     meta(property='og:title', content='Sugarchain Block Explorer')
     meta(property='og:type', content='website')
@@ -156,7 +157,7 @@ html
                <br>
                label#lblX1  
               else  
-               #hashrate.text-success(style='font-family: Lucida Console, Monaco, monospace;') -
+               #hashrate.text-success(style='font-family: Ubuntu Mono;') -
         .col-xs-3
           .panel.panel-default
             .panel-heading
@@ -167,7 +168,7 @@ html
                <br>
                label#difficultyHybrid -
               else
-               #difficulty.text-danger(style='font-family: Lucida Console, Monaco, monospace;') -
+               #difficulty.text-danger(style='font-family: Ubuntu Mono;') -
         .col-xs-3
           .panel.panel-default
             .panel-heading
@@ -178,7 +179,7 @@ html
                <br>
                label#lblX1
               else
-               #supply.text-primary(style='font-family: Lucida Console, Monaco, monospace;') -
+               #supply.text-primary(style='font-family: Ubuntu Mono;') -
         .col-xs-3
           .panel.panel-default
             .panel-heading
@@ -189,7 +190,7 @@ html
                <br>
                label#lblX1
               else
-               #lastPrice.text-dark(style='font-family: Lucida Console, Monaco, monospace;') -
+               #lastPrice.text-dark(style='font-family: Ubuntu Mono;') -
                  
       .row.text-center(style='margin-top:10px;margin-bottom:20px;')
         form.form-inline(method='post', action='/search')      

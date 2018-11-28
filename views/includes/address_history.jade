@@ -7,8 +7,8 @@ tbody
   each tx in txs
     - var time = format_unixtime(tx.timestamp)
     tr
-      td.hidden-xs.text-center(style='font-family: Lucida Console, Monaco, monospace;') #{time}
-      td.hidden-xs.text-left(style='font-family: Lucida Console, Monaco, monospace;')
+      td.hidden-xs.text-center(style='font-family: Ubuntu Mono;') #{time}
+      td.hidden-xs.text-left(style='font-family: Ubuntu Mono;')
         a(href='/tx/#{tx.txid}') #{tx.txid}
       - var done = false
       - var out = 0
@@ -20,7 +20,7 @@ tbody
         if s.addresses == address.a_id
           - vin = s.amount
       if out > 0 && vin > 0
-        td.info.text-right(style='font-family: Lucida Console, Monaco, monospace;')
+        td.info.text-right(style='font-family: Ubuntu Mono;')
           - var amount = (out - vin) / 100000000
           if amount < 0
             - amount = amount * -1
@@ -30,10 +30,10 @@ tbody
           else
             | #{amount.toFixed(8)}
       else if out > 0
-        td.success.text-right(style='font-family: Lucida Console, Monaco, monospace;')
+        td.success.text-right(style='font-family: Ubuntu Mono;')
           - var amount = out / 100000000
           | #{amount.toFixed(8)} ++
       else
-        td.danger.text-right(style='font-family: Lucida Console, Monaco, monospace;')
+        td.danger.text-right(style='font-family: Ubuntu Mono;')
           - var amount = vin / 100000000
           | #{amount.toFixed(8)} --
