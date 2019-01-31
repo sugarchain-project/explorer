@@ -55,10 +55,13 @@ if your VPS doesn't have enough memory (under 1GB)
 ./configure CXXFLAGS="--param ggc-min-expand=1 --param ggc-min-heapsize=32768"
 ```
 
-### wallet run: explorer needs `-txindex` 
+if it doesn't help, use swap
+https://github.com/bitcoin/bitcoin/issues/6624
+
+### wallet run: explorer needs `-txindex=1` 
 for testing log `-printtoconsole` instead of `-daemon`
 ```bash
-/root/sugarchain-v0.16.3/src/sugarchaind -server=1 -rpcuser=username -rpcpassword=password -txindex -daemon
+/root/sugarchain-v0.16.3/src/sugarchaind -server=1 -txindex=1 -rpcuser=username -rpcpassword=password -daemon
 ```
 
 ## install explorer 
@@ -102,7 +105,7 @@ sudo service mongod start
 
 ### explorer MongoDB create
 ```bash
-mongo
+$ mongo
 > use explorerdb
 > db.createUser( { user: "mongo-user", pwd: "mongo-pwd", roles: [ "readWrite" ] } )
 > exit
@@ -110,12 +113,14 @@ mongo
 
 ### option: drop MongoDB
 ```bash
-use explorerdb;
-db.dropDatabase();
-db.dropUser("mongo-user")
+$ mongo
+> use explorerdb;
+> db.dropDatabase();
+> db.dropUser("mongo-user")
+> exit
 ```
 
-### explorer install (check branch)
+### explorer install (check branch!)
 ```bash
 cd && \
 git clone git@github.com:sugarchain-project/explorer.git explorer && \
@@ -128,7 +133,7 @@ cp ./settings.json.sugarchain ./settings.json
 ```
 > edit `./settings.json`
 
-### explorer test-run (각각 다른 터미널에서)
+### explorer test-run (use different terminals)
 ```bash
 npm start # term-1
 node scripts/sync.js index update # term-2 (run twice: take a while...)
@@ -161,8 +166,8 @@ do touch tmp/index.pid && \
 rm -f ./tmp/index.pid && \
 node scripts/sync.js index update && \
 node scripts/sync.js market && \
-node scripts/peers.js; 
-sleep 15.0; 
+node scripts/peers.js && \
+sleep 5.0;
 done
 ```
 
@@ -187,28 +192,7 @@ sudo crontab -e
 @reboot /root/sugarchain-v0.16.3/src/sugarchaind -server=1 -rpcuser=username -rpcpassword=password -txindex -daemon
 
 # explorer
-@reboot sleep 10  && cd /root/explorer/  && /root/.nvm/v0.10.28/bin/forever start bin/cluster
-
-# remove tmp (1m)
-* * * * * rm -f /root/explorer/tmp/index.pid
-
-# sync index (15s)
-* * * * * sleep 15  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/sync.js index update > /dev/null 2>&1
-* * * * * sleep 30  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/sync.js index update > /dev/null 2>&1
-* * * * * sleep 45  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/sync.js index update > /dev/null 2>&1
-* * * * * sleep 60  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/sync.js index update > /dev/null 2>&1
-
-# sync market (15s)
-* * * * * sleep 15  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/sync.js market > /dev/null 2>&1
-* * * * * sleep 30  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/sync.js market > /dev/null 2>&1
-* * * * * sleep 45  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/sync.js market > /dev/null 2>&1
-* * * * * sleep 60  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/sync.js market > /dev/null 2>&1
-
-# sync peer (15s)
-* * * * * sleep 15  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/peers.js > /dev/null 2>&1
-* * * * * sleep 30  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/peers.js > /dev/null 2>&1
-* * * * * sleep 45  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/peers.js > /dev/null 2>&1
-* * * * * sleep 60  && cd /root/explorer  && /root/.nvm/v0.10.28/bin/node scripts/peers.js > /dev/null 2>&1
+@reboot sleep 10  && /root/explorer/run.sh
 ```
 
 ### (OPTION) stop and restart
@@ -231,7 +215,9 @@ setting up for website
 22 for SSH 
 80 for Website
 443 for Redirect
-7979 for Sugarchain
+7979 for Sugarchain(Main)
+17979 for Sugarchain(Testnet)
+17799 for Sugarchain(Regtest)
  
 ```bash 
 sudo ufw status && \
@@ -239,6 +225,8 @@ sudo ufw allow 22 && \
 sudo ufw allow 80 && \
 sudo ufw allow 443 && \
 sudo ufw allow 7979 && \
+sudo ufw allow 17979 && \
+sudo ufw allow 17799 && \
 sudo ufw enable && \
 sudo ufw status
 ```
