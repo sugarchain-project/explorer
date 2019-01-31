@@ -9,8 +9,8 @@ do
     touch tmp/index.pid
     rm -f ./tmp/index.pid 
     node scripts/sync.js index update
-    node scripts/sync.js market
+    # node scripts/sync.js market
     node scripts/peers.js
-    echo "***** sleep 15 seconds *****"
-    sleep 15.0
+    echo "***** sleep 5 seconds *****"
+    sleep 5.0
 done
