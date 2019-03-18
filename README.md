@@ -262,7 +262,7 @@ sudo ufw status
 website url is `explorer.sugarchain.org`
 ```bash 
 sudo apt-get install -y nginx && \
-sudo mv /etc/nginx/sites-enabled/default /etc/nginx/sites-enabled/default.bak
+sudo rm /etc/nginx/sites-enabled/default
 ```
 
 make file
