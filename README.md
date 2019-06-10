@@ -309,13 +309,13 @@ sudo service nginx reload
 
 ### cron for renew certbot
 ```bash 
-crontab -e 
+sudo crontab -e 
 ```
 
-add it (everyday at 08:16)
+add it (every Wed at 08:16 AM)
 ```bash 
-# SSL renew by certbot (everyday at 08:16)
-16 8 * * * $HOME/certbot/certbot-auto renew --no-self-upgrade --post-hook "/usr/sbin/service nginx reload"
+# SSL renew by certbot (every Wed at 08:16 AM)
+16 8 * * 4 . $HOME/certbot/certbot-auto renew --pre-hook "service nginx stop" --post-hook "service nginx start"
 ```
 
 > REBOOT 
