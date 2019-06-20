@@ -242,18 +242,18 @@ setting up for website
 22 for SSH 
 80 for Website
 443 for Redirect
-7979 for Sugarchain(Main)
-17979 for Sugarchain(Testnet)
-17799 for Sugarchain(Regtest)
+34230 for Sugarchain(Main)
+44230 for Sugarchain(Testnet)
+45340 for Sugarchain(Regtest)
  
 ```bash 
 sudo ufw status && \
 sudo ufw allow 22 && \
 sudo ufw allow 80 && \
 sudo ufw allow 443 && \
-sudo ufw allow 7979 && \
-sudo ufw allow 17979 && \
-sudo ufw allow 17799 && \
+sudo ufw allow 34230 && \
+sudo ufw allow 44230 && \
+sudo ufw allow 45340 && \
 sudo ufw enable && \
 sudo ufw status
 ```

@@ -49,7 +49,7 @@
   // wallet settings
   "wallet": {
     "host": "localhost",
-    "port": 17978,
+    "port": 44229,
     "user": "username",
     "pass": "password"
   },
