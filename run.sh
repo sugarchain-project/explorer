@@ -24,6 +24,7 @@ do
     cd $HOME/explorer/
     touch ./tmp/index.pid
     rm -f ./tmp/index.pid
+    rm -f ./tmp/delete.me
     node ./scripts/sync.js index update
     # node scripts/sync.js market
     node ./scripts/peers.js
