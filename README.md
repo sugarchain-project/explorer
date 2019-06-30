@@ -151,7 +151,7 @@ npm install forever-monitor
 forever start bin/cluster
 ```
 
-### [debug] explorer update every `15s` (sync.js peer.js)
+### [debug] explorer update every `5s` (sync.js peer.js)
 update first
 ```bash
 node scripts/sync.js index update && \
