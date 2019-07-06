@@ -183,8 +183,11 @@ sudo crontab -e
 ```
 
 ```
-# explorer
+# run explorer with logfile
 @reboot /root/explorer/run.sh >> /root/run.log 2>&1
+
+# clear logfile (every monday 9:00)
+0 9 * * 1       > $HOME/run.log
 ```
 
 run.log
