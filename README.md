@@ -174,7 +174,7 @@ sudo ln -s $(which node) /usr/bin/node
 
 make crontab
 ```bash
-sudo crontab -e
+crontab -e
 ```
 
 ```
@@ -185,7 +185,7 @@ sudo crontab -e
 0 9 * * 1       > $HOME/run.log
 ```
 
-run.log
+run.sh
 ```bash
 #!/bin/bash
 
@@ -325,8 +325,8 @@ https://github.com/sugarchain-project/explorer/commit/2d29302470e1164d0aff9001bf
 
 # License
 
-Copyright (c) 2018, The Sugarchain developers  
-Copyright (c) 2018, cryptozeny  
+Copyright (c) 2019, The Sugarchain developers  
+Copyright (c) 2019, cryptozeny  
 Copyright (c) 2015, Iquidus Technology  
 Copyright (c) 2015, Luke Williams  
 All rights reserved.
