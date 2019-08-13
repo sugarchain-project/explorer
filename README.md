@@ -81,30 +81,29 @@ nvm use v0.10.28
 ```
 > LOGOUT/IN
 
-### explorer depends
-```bash
+### MongoDB install (v3.2.21)
+https://docs.mongodb.com/v3.2/tutorial/install-mongodb-on-ubuntu/
+https://www.mkyong.com/mongodb/mongodb-failed-to-unlink-socket-file-tmpmongodb-27017/
+https://github.com/mongodb-js/kerberos/issues/45
+
+```
 cd && \
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 && \
-echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list && \
+wget -qO - https://www.mongodb.org/static/pgp/server-3.2.asc | sudo apt-key add - && \
+echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list && \
 sudo apt-get update && \
-sudo apt-get install -y mongodb-org libkrb5-dev
+sudo apt-get install -y mongodb-org=3.2.21 mongodb-org-server=3.2.21 mongodb-org-shell=3.2.21 mongodb-org-mongos=3.2.21 mongodb-org-tools=3.2.21 && \
+sudo service mongod start && \
+sudo service mongod status
 ```
 
-### upstart for starting MongoDB
-```bash
-sudo apt-get install upstart-sysv -y
+### MongoDB start
 ```
-> REBOOT
-
-### explorer DB start
-```bash
 sudo service mongod stop && \
 sudo service mongod start
-
 ```
 
-### explorer MongoDB create
-```bash
+### MongoDB DB create
+```
 $ mongo
 > use explorerdb
 > db.createUser( { user: "mongo-user", pwd: "mongo-pwd", roles: [ "readWrite" ] } )
@@ -123,6 +122,7 @@ $ mongo
 ### explorer install (check branch!)
 ```bash
 cd && \
+sudo apt-get install -y libkrb5-dev && \
 git clone git@github.com:sugarchain-project/explorer.git explorer && \
 cd explorer && npm install --production
 ```
@@ -274,7 +274,7 @@ sudo nano /etc/nginx/sites-available/explorer.sugarchain.org
 ```
 
 paste it
-```json
+```
 server {
     listen 80;
     server_name explorer.sugarchain.org;
