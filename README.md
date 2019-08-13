@@ -1,23 +1,10 @@
 # IQUIDUS EXPLORER INSTALLATION ON VPS
 
-## INTRO: switch from Bitpay Inishgt
-기존의 Bitpay Insight를 사용하고 있었다. 나쁘지 않았다 하지만 bitcoin `v0.16` 이후에 `getinfo`가 삭제되었고 최신버젼에서는 Bitpay Insight를 더이상 사용할수없다. 그 대안으로 찾은것이 바로 IQUIDUS EXPLORER 이다. 다양한 기능을 제공하며 꽤 괜찮은 성능을 보여준다.
-
-Bitpay Insight doesn't support after bitcoin v0.16
-```js
-info: insight server listening on port 3000 in development mode
-error: ERROR  code=-32601, message=getinfo
-
-This call was removed in version 0.16.0. Use the appropriate fields from:
-- getblockchaininfo: blocks, difficulty, chain
-- getnetworkinfo: version, protocolversion, timeoffset, connections, proxy, relayfee, warnings
-- getwalletinfo: balance, keypoololdest, keypoolsize, paytxfee, unlocked_until, walletversion
-```
-
 ## install VPS server 
 
 ### locale all to `en_US.UTF-8`
-```bash
+```
+#
 export LANGUAGE="en_US.UTF-8" && \
 echo 'LANGUAGE="en_US.UTF-8"' >> /etc/default/locale && \
 echo 'LC_ALL="en_US.UTF-8"' >> /etc/default/locale
@@ -64,6 +51,13 @@ for testing log `-printtoconsole` instead of `-daemon`
 /root/sugarchain-v0.16.3/src/sugarchaind -server=1 -txindex=1 -rpcuser=rpcuser -rpcpassword=rpcpassword -daemon
 ```
 
+### (optional) copy blockchain
+```
+rsync -avzu -e "ssh -i ~/key.pem" ~/.sugarchain/testnet4/chainstate/ root@111.222.333.444:~/chainstate/
+ ( OR )
+scp -r -i ~/key.pem ~/.sugarchain/testnet4/blocks/ root@111.222.333.444:~/blocks/
+```
+
 ## install explorer 
 
 ### Nodejs (explorer needs node v0.10.28)
@@ -81,10 +75,10 @@ nvm use v0.10.28
 ```
 > LOGOUT/IN
 
-### MongoDB install (v3.2.21)
+### MongoDB install (v3.2.21) ...wired...
 https://docs.mongodb.com/v3.2/tutorial/install-mongodb-on-ubuntu/
-https://www.mkyong.com/mongodb/mongodb-failed-to-unlink-socket-file-tmpmongodb-27017/
 https://github.com/mongodb-js/kerberos/issues/45
+https://www.mkyong.com/mongodb/mongodb-failed-to-unlink-socket-file-tmpmongodb-27017/
 
 ```
 cd && \
@@ -92,14 +86,11 @@ wget -qO - https://www.mongodb.org/static/pgp/server-3.2.asc | sudo apt-key add 
 echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list && \
 sudo apt-get update && \
 sudo apt-get install -y mongodb-org=3.2.21 mongodb-org-server=3.2.21 mongodb-org-shell=3.2.21 mongodb-org-mongos=3.2.21 mongodb-org-tools=3.2.21 && \
-sudo service mongod start && \
-sudo service mongod status
-```
-
-### MongoDB start
-```
 sudo service mongod stop && \
-sudo service mongod start
+sudo rm -rf /tmp/mongodb-27017.sock && \
+sudo service mongod start && \
+mongod --version | grep "v3.2.21" && \
+sudo service mongod status
 ```
 
 ### MongoDB DB create
@@ -123,14 +114,11 @@ $ mongo
 ```bash
 cd && \
 sudo apt-get install -y libkrb5-dev && \
-git clone git@github.com:sugarchain-project/explorer.git explorer && \
+git clone https://github.com/sugarchain-project/explorer.git explorer && \
 cd explorer && npm install --production
 ```
 
 ### explorer settings
-```bash
-cp ./settings.json.sugarchain ./settings.json
-```
 > edit `./settings.json`
 
 ### explorer test-run (use different terminals)
@@ -139,6 +127,13 @@ npm start # term-1
 node scripts/sync.js index update # term-2 (run twice: take a while...)
 ```
 > stop both after sync completed
+
+if you get some error like this, check wallet sync completion or try reindexing with `-txindex=1`
+```
+Unable to connect to explorer API
+{ [Error: Block height out of range] code: -8 }
+{ [Error: Block not found] code: -5 }
+```
 
 ### forever for Nodejs
 ```bash
