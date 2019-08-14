@@ -1,6 +1,23 @@
 # IQUIDUS EXPLORER INSTALLATION ON VPS
 
+## REQUIREMENT
+Minimum : 1 CPU / 1 GB RAM
+Recommended : 2 CPUs / 4 GB RAM
+
 ## install VPS server 
+
+### make swap
+if you have under 1GB ram, you need at least 2GB swap or 2x of your RAM size.
+```
+sudo fallocate -l 2G /swapfile && \
+sudo chmod 600 /swapfile && \
+ls -lh /swapfile | grep -e "-rw-------" && \
+sudo mkswap /swapfile && \
+sudo swapon /swapfile && \
+sudo swapon --show && \
+sudo cp /etc/fstab /etc/fstab.bak && \
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+```
 
 ### locale all to `en_US.UTF-8`
 ```
