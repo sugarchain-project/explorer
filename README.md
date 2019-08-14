@@ -48,7 +48,7 @@ https://github.com/bitcoin/bitcoin/issues/6624
 ### wallet run: explorer needs `-txindex=1` 
 for testing log `-printtoconsole` instead of `-daemon`
 ```bash
-/root/sugarchain-v0.16.3/src/sugarchaind -server=1 -txindex=1 -rpcuser=rpcuser -rpcpassword=rpcpassword -daemon
+$HOME/sugarchain-v0.16.3/src/sugarchaind -server=1 -txindex=1 -rpcuser=rpcuser -rpcpassword=rpcpassword -daemon
 ```
 
 ### (optional) copy blockchain
@@ -124,17 +124,10 @@ cd explorer && npm install --production
 ### explorer test-run (use different terminals)
 ```bash
 npm start # term-1
-rm -f ./tmp/index.pid # remove pid for sure
-node scripts/sync.js index update # term-2 (run twice: take a while...)
+rm -f ./tmp/index.pid # term-2 : remove pid for sure
+node scripts/sync.js index update # term-2 : run twice. take a while...
 ```
 > stop both after sync completed
-
-if you get some error like this, check wallet sync completion or try reindexing with `-txindex=1`
-```
-Unable to connect to explorer API
-{ [Error: Block height out of range] code: -8 }
-{ [Error: Block not found] code: -5 }
-```
 
 ### forever for Nodejs
 ```bash
@@ -181,7 +174,7 @@ crontab -e
 
 ```
 # run explorer with logfile
-@reboot /root/explorer/run.sh >> /root/run.log 2>&1
+@reboot $HOME/explorer/run.sh >> $HOME/run.log 2>&1
 
 # clear logfile (every monday 9:00)
 0 9 * * 1       > $HOME/run.log
@@ -224,15 +217,15 @@ done
 
 ### (OPTION) stop and restart
 ```bash
-cd /root/explorer/ && forever stop bin/cluster
-cd /root/explorer/ && forever start bin/cluster
-cd /root/explorer/ && forever restart bin/cluster
+cd $HOME/explorer/ && forever stop bin/cluster
+cd $HOME/explorer/ && forever start bin/cluster
+cd $HOME/explorer/ && forever restart bin/cluster
 ```
 
 ### (OPTION) check forever log
 ```bash
 forever list
-tail -f /root/.forever/PwHy.log
+tail -f $HOME/.forever/PwHy.log
 ```
 
 ## DNS
