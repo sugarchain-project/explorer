@@ -110,6 +110,34 @@ mongod --version | grep "v3.2.21" && \
 sudo service mongod status
 ```
 
+### MongoDB fix warning
+Warning
+```
+Server has startup warnings: 
+2019-08-14T22:50:19.528+0900 I CONTROL  [initandlisten] 
+2019-08-14T22:50:19.528+0900 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/enabled is 'always'.
+2019-08-14T22:50:19.528+0900 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+2019-08-14T22:50:19.528+0900 I CONTROL  [initandlisten] 
+2019-08-14T22:50:19.528+0900 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/defrag is 'always'.
+2019-08-14T22:50:19.528+0900 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+2019-08-14T22:50:19.528+0900 I CONTROL  [initandlisten]
+```
+
+Solution: paste it to `/etc/rc.local` before `exit 0` and `reboot`. then try mongo again.
+```
+# mongo - begin
+if test -f /sys/kernel/mm/transparent_hugepage/khugepaged/defrag; then
+  echo 0 > /sys/kernel/mm/transparent_hugepage/khugepaged/defrag
+fi
+if test -f /sys/kernel/mm/transparent_hugepage/defrag; then
+  echo never > /sys/kernel/mm/transparent_hugepage/defrag
+fi
+if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
+  echo never > /sys/kernel/mm/transparent_hugepage/enabled
+fi
+# mongo - end
+```
+
 ### MongoDB DB create
 ```
 $ mongo
