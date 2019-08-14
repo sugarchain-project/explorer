@@ -84,9 +84,9 @@
   // ensure links on API page are valid
   "api": {
     "blockindex": 1,
-    "blockhash": "451288d17c62f2932ca6bbc37cf65d80aa662c638013980680df25b7af0c64a5",
-    "txhash": "b117e644cb62b9126035f6a8ad706e64522b8f4fd5e086548cc8ad908348e4b6",
-    "address": "ToXBs8oen3N7vTXL53J5iAhackbhurRRKF"
+    "blockhash": "680a5d5be36454d38c9ebba6670d1a9125b17602d061491a671c4ddd51ef2f67",
+    "txhash": "6fa56add69f0853ab220f9a9af8f98462cfac10767ee57fc917e740ee36526ac",
+    "address": "TorvAoxEENMJaU5pd5gXjpu2f5wDugZ2rJ"
   },
 
   // market settings
@@ -131,8 +131,8 @@
   },
   
   //genesis
-  "genesis_tx": "09a754250024b34f2d2a8e0edbb43375fbb024ec6025edb243b32e50b6c20d76",
-  "genesis_block": "78bb49dda56d9817c85508bd1e8d21ca7840bb1aff625690f2c282dd1214e7a8",
+  "genesis_tx": "4059da1dac0fe2761276837e64895d2ee55330558e58d29d7369499b31030102",
+  "genesis_block": "e15ac61305c307e84db7906afef45a1acf1148b8c1f649645132ff66af7a760d",
 
   //heavy (enable/disable additional heavy features)
   "heavy": false,
