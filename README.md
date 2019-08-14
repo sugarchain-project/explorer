@@ -1,10 +1,9 @@
 # IQUIDUS EXPLORER INSTALLATION ON VPS
 
-## REQUIREMENT
-Minimum : 1 CPU / 1 GB RAM
-Recommended : 2 CPUs / 4 GB RAM
-
-## install VPS server 
+## VPS SERVER
+Requirement 
+ - Minimum : 1 CPU / 1 GB RAM 
+ - Recommended : 2 CPUs / 4 GB RAM 
 
 ### make swap
 if you have under 1GB ram, you need at least 2GB swap or 2x of your RAM size.
@@ -33,7 +32,7 @@ sudo timedatectl set-timezone Asia/Seoul
 ```
 > LOGOUT/IN
 
-## install coind 
+## INSTALL COIND 
 
 ### wallet depends
 ```bash
@@ -44,7 +43,7 @@ sudo apt-get install -y \
 software-properties-common libdb4.8-dev libdb4.8++-dev build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils libboost-all-dev libminiupnpc-dev libzmq3-dev libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler libqrencode-dev
 ```
 
-### wallet build (check branch!)
+### wallet build
 ```bash
 cd && \
 git clone git@github.com:cryptozeny/sugarchain-v0.16.3.git && \
@@ -75,7 +74,7 @@ rsync -avzu -e "ssh -i ~/key.pem" ~/.sugarchain/testnet4/chainstate/ root@111.22
 scp -r -i ~/key.pem ~/.sugarchain/testnet4/blocks/ root@111.222.333.444:~/blocks/
 ```
 
-## install explorer 
+## INSTALL EXPLORER
 
 ### Nodejs (explorer needs node v0.10.28)
 ```bash
@@ -111,7 +110,7 @@ mongod --version | grep "v3.2.21" && \
 sudo service mongod status
 ```
 
-### MongoDB fix warning
+### (optional) MongoDB fix warning
 Warning
 ```
 Server has startup warnings: 
@@ -147,7 +146,7 @@ $ mongo
 > exit
 ```
 
-### option: drop MongoDB
+### (optional): MongoDB DROP DB (caution!! lost your database!!)
 ```bash
 $ mongo
 > use explorerdb;
@@ -156,7 +155,7 @@ $ mongo
 > exit
 ```
 
-### explorer install (check branch!)
+### explorer install
 ```bash
 cd && \
 sudo apt-get install -y libkrb5-dev && \
@@ -171,7 +170,7 @@ cd explorer && npm install --production
 ```bash
 npm start # term-1
 rm -f ./tmp/index.pid # term-2 : remove pid for sure
-node scripts/sync.js index update # term-2 : run twice. take a while...
+node scripts/sync.js index update # term-2 : run twice. take a while... (1~7 days)
 ```
 > stop both after sync completed
 
@@ -261,14 +260,14 @@ do
 done
 ```
 
-### (OPTION) stop and restart
+### (optional) stop and restart
 ```bash
 cd $HOME/explorer/ && forever stop bin/cluster
 cd $HOME/explorer/ && forever start bin/cluster
 cd $HOME/explorer/ && forever restart bin/cluster
 ```
 
-### (OPTION) check forever log
+### (optional) check forever log
 ```bash
 forever list
 tail -f $HOME/.forever/PwHy.log
@@ -277,7 +276,7 @@ tail -f $HOME/.forever/PwHy.log
 ## DNS
 setting up for website
 
-### firewall
+### firewall (on AWS, check Security Group/Inbound)
 22 for SSH 
 80 for Website
 443 for Redirect
@@ -298,22 +297,23 @@ sudo ufw status
 ```
 
 ### nginx
-website url is `explorer.sugarchain.org`
+website url is `1explorer-testnet.cryptozeny.com`
 ```bash 
 sudo apt-get install -y nginx && \
 sudo rm /etc/nginx/sites-enabled/default
 ```
 
 make file
-```bash 
-sudo nano /etc/nginx/sites-available/explorer.sugarchain.org
+```bash
+URL="1explorer-testnet.cryptozeny.com" && \
+sudo nano /etc/nginx/sites-available/$URL
 ```
 
 paste it
 ```
 server {
     listen 80;
-    server_name explorer.sugarchain.org;
+    server_name 1explorer-testnet.cryptozeny.com;
 
     location / {
         proxy_set_header   X-Forwarded-For $remote_addr;
@@ -325,9 +325,10 @@ server {
 
 make ln & restart nginx
 ```bash 
+URL="1explorer-testnet.cryptozeny.com" && \
 sudo ln -s \
-/etc/nginx/sites-available/explorer.sugarchain.org \
-/etc/nginx/sites-enabled/explorer.sugarchain.org && \
+/etc/nginx/sites-available/$URL \
+/etc/nginx/sites-enabled/$URL && \
 sudo service nginx restart
 ```
 
@@ -341,7 +342,10 @@ Add nameserver to route53
 cd && \
 git clone https://github.com/certbot/certbot && \
 cd certbot && \
+sudo service nginx stop && \
+sudo service nginx start && \
 sudo service nginx restart && \
+sudo service nginx reload && \
 LC_ALL=C ./certbot-auto run --nginx && \
 sudo service nginx reload
 ```
@@ -354,17 +358,17 @@ sudo crontab -e
 add it (every Wed at 08:16 AM)
 ```bash 
 # SSL renew by certbot (every Wed at 08:16 AM)
-16 8 * * 4 . $HOME/certbot/certbot-auto renew --pre-hook "service nginx stop" --post-hook "service nginx start"
+16 8 * * 4 . $HOME/certbot/certbot-auto renew --pre-hook "service nginx stop" --post-hook "service nginx start" --force-renewal >> $HOME/certbot.log 2>&1
 ```
 
 > REBOOT 
 
 ## MISC
 
-### (OPTION) change website URL  
+### (optional) change website URL  
 https://github.com/sugarchain-project/explorer/commit/2d29302470e1164d0aff9001bf2dbdcd486bec71
 
-# License
+# LICENSE
 
 Copyright (c) 2019, The Sugarchain developers  
 Copyright (c) 2019, cryptozeny  
