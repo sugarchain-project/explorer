@@ -104,7 +104,8 @@ echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" 
 sudo apt-get update && \
 sudo apt-get install -y mongodb-org=3.2.21 mongodb-org-server=3.2.21 mongodb-org-shell=3.2.21 mongodb-org-mongos=3.2.21 mongodb-org-tools=3.2.21 && \
 sudo service mongod stop && \
-sudo rm -rf /tmp/mongodb-27017.sock && \
+sudo rm -f /tmp/mongodb-27017.sock && \
+sudo systemctl enable mongod.service && \
 sudo service mongod start && \
 mongod --version | grep "v3.2.21" && \
 sudo service mongod status
@@ -188,7 +189,7 @@ forever start bin/cluster
 ### [debug] explorer update every `5s` (sync.js peer.js)
 update first
 ```bash
-rm -rf tmp/index.pid && \
+rm -f tmp/index.pid && \
 node scripts/sync.js index update && \
 node scripts/sync.js market && \
 node scripts/peers.js
