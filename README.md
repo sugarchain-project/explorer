@@ -149,6 +149,7 @@ forever start bin/cluster
 ### [debug] explorer update every `5s` (sync.js peer.js)
 update first
 ```bash
+rm -rf tmp/index.pid && \
 node scripts/sync.js index update && \
 node scripts/sync.js market && \
 node scripts/peers.js
