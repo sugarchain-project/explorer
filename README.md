@@ -124,6 +124,7 @@ cd explorer && npm install --production
 ### explorer test-run (use different terminals)
 ```bash
 npm start # term-1
+rm -f ./tmp/index.pid # remove pid for sure
 node scripts/sync.js index update # term-2 (run twice: take a while...)
 ```
 > stop both after sync completed
