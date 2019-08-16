@@ -49,7 +49,7 @@
   // wallet settings
   "wallet": {
     "host": "localhost",
-    "port": 44229,
+    "port": 34229,
     "user": "rpcuser",
     "pass": "rpcpassword"
   },
@@ -84,9 +84,9 @@
   // ensure links on API page are valid
   "api": {
     "blockindex": 1,
-    "blockhash": "680a5d5be36454d38c9ebba6670d1a9125b17602d061491a671c4ddd51ef2f67",
-    "txhash": "6fa56add69f0853ab220f9a9af8f98462cfac10767ee57fc917e740ee36526ac",
-    "address": "TorvAoxEENMJaU5pd5gXjpu2f5wDugZ2rJ"
+    "blockhash": "2f4c3f3a1ec3234991c2f9398af8f3cfd0d60af38955685e57df359d43b04480",
+    "txhash": "f060facd881267c75ffbee59f6aaa73a162c295bc6b9e79043b1350dfabaf2ff",
+    "address": "sugar1qmvazmt4natjdgewnkuq45allxsne7yu3rpszpx"
   },
 
   // market settings
@@ -131,8 +131,8 @@
   },
   
   //genesis
-  "genesis_tx": "4059da1dac0fe2761276837e64895d2ee55330558e58d29d7369499b31030102",
-  "genesis_block": "e15ac61305c307e84db7906afef45a1acf1148b8c1f649645132ff66af7a760d",
+  "genesis_tx": "7677ce2a579cb0411d1c9e6b1e9072b8f537f1e59cb387dacac2daac56e150b0",
+  "genesis_block": "b8a83b1f579c06911c120932f06f0eabb857ef7f3366b3096b589769ef8d3e14",
 
   //heavy (enable/disable additional heavy features)
   "heavy": false,
