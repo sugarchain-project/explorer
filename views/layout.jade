@@ -36,7 +36,7 @@ html
             $("#supply").text(json.data[0].supply.toFixed(8));
             $("#difficulty").text(json.data[0].difficulty.toExponential());
             $("#difficultyHybrid").text(json.data[0].difficultyHybrid);
-            $("#hashrate").text(json.data[0].hashrate);
+            $("#hashrate").text(json.data[0].hashrate); // toFixed(3) at <lib/explorer.js>
             $("#lastPrice").text(json.data[0].lastPrice.toFixed(8));
             $("#lblConnections").text(json.data[0].connections + ' connections');
             $("#lblBlockcount").text(json.data[0].blockcount + ' blocks');
