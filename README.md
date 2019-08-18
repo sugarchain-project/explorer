@@ -370,6 +370,17 @@ sudo fuser -k 80/tcp && sudo fuser -k 443/tcp && \
 sudo service nginx start
 ```
 
+or
+```
+sudo fuser -k 80/tcp ; \
+sleep 2 && \
+sudo fuser -k 443/tcp ; \
+sleep 2 && \
+sudo service nginx start && \
+sleep 2 && \
+sudo service nginx status
+```
+
 > REBOOT 
 
 ## MISC
