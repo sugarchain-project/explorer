@@ -176,7 +176,7 @@ node scripts/sync.js index update # term-2 : run twice. take a while... (1~7 day
 
 ### forever for Nodejs
 ```bash
-npm install forever -g
+npm install forever -g && \
 npm install forever-monitor
 ```
 
