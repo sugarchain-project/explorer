@@ -382,7 +382,6 @@ add it (every Wed at 08:16 AM)
 ```bash 
 # SSL renew by certbot (every Wed at 08:16 AM)
 16 8 * * 4 sudo $HOME/certbot/certbot-auto renew --pre-hook "service nginx stop" --post-hook "service nginx start" --force-renewal >> $HOME/certbot.log 2>&1
-@reboot sudo $HOME/certbot/certbot-auto renew --pre-hook "service nginx stop" --post-hook "service nginx start" --force-renewal >> $HOME/certbot.log 2>&1
 ```
 
 nginx - if starting failed
