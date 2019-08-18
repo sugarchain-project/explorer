@@ -364,6 +364,12 @@ add it (every Wed at 08:16 AM)
 @reboot sudo $HOME/certbot/certbot-auto renew --pre-hook "service nginx stop" --post-hook "service nginx start" --force-renewal >> $HOME/certbot.log 2>&1
 ```
 
+nginx - if starting failed
+```
+sudo fuser -k 80/tcp && sudo fuser -k 443/tcp && \
+sudo service nginx start
+```
+
 > REBOOT 
 
 ## MISC
