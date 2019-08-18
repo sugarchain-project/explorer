@@ -350,7 +350,7 @@ sudo apt-get install -y certbot python-certbot-nginx
 
 Certbot run
 ```bash
-sudo certbot certonly --nginx
+sudo certbot --nginx
 ```
 
 Certbot test
