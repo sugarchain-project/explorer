@@ -337,7 +337,7 @@ AWS `route53` recommended
 Adds `A` record with `explorer`.
 Add nameserver to route53
 
-### Certbot (recommended: no cron required)
+### Certbot (recommended)
 Certbot install
 ```bash
 sudo apt-get update && \
@@ -356,6 +356,16 @@ sudo certbot --nginx
 Certbot test
 ```bash
 sudo certbot renew --dry-run
+```
+
+Certbot cron
+```
+crontab -e
+```
+
+```bash
+# SSL renew by certbot (every Wed at 08:16 AM)
+16 8 * * 4 sudo certbot renew --force-renewal >> $HOME/certbot.log 2>&1
 ```
 
 ### Certbot (complicated)
