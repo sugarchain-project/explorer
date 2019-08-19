@@ -230,7 +230,7 @@ run.sh
 #!/bin/bash
 
 # coind daemon
-$HOME/sugarchain-v0.16.3/src/sugarchaind -server=1 -rpcuser=rpcuser -rpcpassword=rpcpassword -txindex -daemon
+$HOME/sugarchain-v0.16.3/src/sugarchaind -server=1 -rpcuser=rpcuser -rpcpassword=rpcpassword -txindex -printtoconsole
 
 # waiting for daemon
 echo "***** sleep 30 seconds for daemon *****"
