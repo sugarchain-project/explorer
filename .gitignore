@@ -30,4 +30,4 @@ node_modules
 # *.ico
 # *.png
 
-tmp/delete.me
+tmp/*
