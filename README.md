@@ -219,13 +219,13 @@ crontab -e
 
 ```
 # run explorer with logfile
-@reboot $HOME/explorer/run.sh >> $HOME/run.log 2>&1
+@reboot $HOME/explorer/run-testnet.sh >> $HOME/run.log 2>&1
 
 # clear logfile (every monday 9:00)
 0 9 * * 1       > $HOME/run.log
 ```
 
-run.sh
+run-testnet.sh
 ```bash
 #!/bin/bash
 
