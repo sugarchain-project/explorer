@@ -64,7 +64,7 @@ https://github.com/bitcoin/bitcoin/issues/6624
 ### wallet run: explorer needs `-txindex=1` 
 for testing log `-printtoconsole` instead of `-daemon`
 ```bash
-$HOME/sugarchain-v0.16.3/src/sugarchaind -server=1 -txindex=1 -rpcuser=rpcuser -rpcpassword=rpcpassword -daemon
+$HOME/sugarchain-v0.16.3/src/sugarchaind -server=1 -txindex=1 -rpcuser=rpcuser -rpcpassword=rpcpassword -testnet -printtoconsole
 ```
 
 ### (optional) copy blockchain
