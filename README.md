@@ -64,14 +64,14 @@ https://github.com/bitcoin/bitcoin/issues/6624
 ### wallet run: explorer needs `-txindex=1` 
 for testing log `-printtoconsole` instead of `-daemon`
 ```bash
-$HOME/sugarchain-v0.16.3/src/sugarchaind -server=1 -txindex=1 -rpcuser=rpcuser -rpcpassword=rpcpassword -testnet -printtoconsole
+$HOME/sugarchain-v0.16.3/src/sugarchaind -server=1 -txindex=1 -rpcuser=rpcuser -rpcpassword=rpcpassword -mainnet -printtoconsole
 ```
 
 ### (optional) copy blockchain
 ```
-rsync -avzu -e "ssh -i ~/key.pem" ~/.sugarchain/testnet4/chainstate/ root@111.222.333.444:~/chainstate/
+rsync -avzu -e "ssh -i ~/key.pem" ~/.sugarchain/chainstate/ root@111.222.333.444:~/chainstate/
  ( OR )
-scp -r -i ~/key.pem ~/.sugarchain/testnet4/blocks/ root@111.222.333.444:~/blocks/
+scp -r -i ~/key.pem ~/.sugarchain/blocks/ root@111.222.333.444:~/blocks/
 ```
 
 ## INSTALL EXPLORER
@@ -219,13 +219,13 @@ crontab -e
 
 ```
 # run explorer with logfile
-@reboot $HOME/explorer/run-testnet.sh >> $HOME/run.log 2>&1
+@reboot $HOME/explorer/run.sh >> $HOME/run.log 2>&1
 
 # clear logfile (every monday 9:00)
 0 9 * * 1       > $HOME/run.log
 ```
 
-run-testnet.sh
+run.sh
 ```bash
 #!/bin/bash
 
@@ -297,7 +297,7 @@ sudo ufw status
 ```
 
 ### nginx
-website url is `1explorer-testnet.cryptozeny.com`
+website url is `1explorer.sugarchain.org`
 ```bash 
 sudo apt-get install -y nginx && \
 sudo rm /etc/nginx/sites-enabled/default
@@ -305,7 +305,7 @@ sudo rm /etc/nginx/sites-enabled/default
 
 make file
 ```bash
-URL="1explorer-testnet.cryptozeny.com" && \
+URL="1explorer.sugarchain.org" && \
 sudo nano /etc/nginx/sites-available/$URL
 ```
 
@@ -313,7 +313,7 @@ paste it
 ```
 server {
     listen 80;
-    server_name 1explorer-testnet.cryptozeny.com;
+    server_name 1explorer.sugarchain.org;
 
     location / {
         proxy_set_header   X-Forwarded-For $remote_addr;
@@ -325,7 +325,7 @@ server {
 
 make ln & restart nginx
 ```bash 
-URL="1explorer-testnet.cryptozeny.com" && \
+URL="1explorer.sugarchain.org" && \
 sudo ln -s \
 /etc/nginx/sites-available/$URL \
 /etc/nginx/sites-enabled/$URL && \

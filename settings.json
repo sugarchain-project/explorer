@@ -7,7 +7,7 @@
   // name your instance!
   "title": "Sugarchain Block Explorer",
 
-  "address": "https://explorer.sugarchain.org",
+  "address": "https://1explorer.sugarchain.org",
 
   // coin name
   "coin": "Sugarchain",
@@ -49,7 +49,7 @@
   // wallet settings
   "wallet": {
     "host": "localhost",
-    "port": 44229,
+    "port": 34229,
     "user": "rpcuser",
     "pass": "rpcpassword"
   },
@@ -86,9 +86,9 @@
   // txhash = "merkleroot"
   "api": {
     "blockindex": 1,
-    "blockhash": "0741357f5ee729dffdebdc78f0897f4c244788effebb2cda22c5d5947bebd923",
-    "txhash": "4256f5dd0802b0bb406a72f1e96cd52063d2e4d88b6cc9112108957cbeb670dd",
-    "address": "tugar1qnngucju72sfzlh2qqaygnjh58l9nx3c5v7kjqu"
+    "blockhash": "FIXME.SUGAR",
+    "txhash": "FIXME.SUGAR",
+    "address": "FIXME.SUGAR"
   },
 
   // market settings
@@ -136,7 +136,7 @@
   // genesis_tx = "merkleroot"
   // genexix_block = "hash"
   "genesis_tx": "7677ce2a579cb0411d1c9e6b1e9072b8f537f1e59cb387dacac2daac56e150b0",
-  "genesis_block": "e0e0e42e493ba7b15f7b0fe1a7e66f73b7fd8b3e6e6a7b0e821a6b95040d3826",
+  "genesis_block": "b8a83b1f579c06911c120932f06f0eabb857ef7f3366b3096b589769ef8d3e14",
 
   //heavy (enable/disable additional heavy features)
   "heavy": false,
