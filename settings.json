@@ -136,7 +136,7 @@
   // genesis_tx = "merkleroot"
   // genexix_block = "hash"
   "genesis_tx": "7677ce2a579cb0411d1c9e6b1e9072b8f537f1e59cb387dacac2daac56e150b0",
-  "genesis_block": "b8a83b1f579c06911c120932f06f0eabb857ef7f3366b3096b589769ef8d3e14",
+  "genesis_block": "7d5eaec2dbb75f99feadfa524c78b7cabc1d8c8204f79d4f3a83381b811b0adc",
 
   //heavy (enable/disable additional heavy features)
   "heavy": false,
