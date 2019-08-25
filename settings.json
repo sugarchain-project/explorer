@@ -86,9 +86,9 @@
   // txhash = "merkleroot"
   "api": {
     "blockindex": 1,
-    "blockhash": "FIXME.SUGAR",
-    "txhash": "FIXME.SUGAR",
-    "address": "FIXME.SUGAR"
+    "blockhash": "ce8a0df339f2edceb99c5325c95b2b0ae752e29de1193f6113549f0e1cae7c91",
+    "txhash": "41759143332febdf456cdad7321899fe6ae23787b5d4f35b9ad187fd3a15ec79",
+    "address": "Sbc92vjRvQLJXwbmgHoac4Nb7A95JastKm"
   },
 
   // market settings
