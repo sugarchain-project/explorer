@@ -413,6 +413,15 @@ sudo service nginx status
 
 > REBOOT 
 
+## CRONTAB << Remove Logfile
+Check your nvm version! In this case using `v0.10.28`
+ * paste it into `crontab -e` at the beginning
+```
+# delete logs
+@reboot rm $HOME/.sugarchain/debug.log
+@reboot $HOME/.nvm/v0.10.28/bin/forever cleanlogs
+```
+
 ## MISC
 
 ### (optional) change website URL  
