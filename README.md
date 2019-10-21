@@ -417,7 +417,7 @@ sudo service nginx status
 Check your nvm version! In this case using `v0.10.28`
  * paste it into `crontab -e` at the beginning
 ```
-# delete logs
+# delete logs (explorer)
 @reboot rm $HOME/.sugarchain/debug.log
 @reboot $HOME/.nvm/v0.10.28/bin/forever cleanlogs
 ```
