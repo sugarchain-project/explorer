@@ -5,21 +5,21 @@
 */
 {
   // name your instance!
-  "title": "Explorer Sugarchain",
+  "title": "TExplorer TSugarchain",
 
-  "address": "https://1explorer.sugarchain.org",
+  "address": "https://1explorer-testnet.cryptozeny.com",
 
   // coin name
-  "coin": "Sugarchain",
+  "coin": "TSugarchain",
 
   // coin symbol
-  "symbol": "SUGAR",
+  "symbol": "TSUGAR",
 
   // logo
-  "logo": "/images/logo.png",
+  "logo": "/images/logo2.png",
 
   // favicon
-  "favicon": "public/favicon.ico",
+  "favicon": "public/images/logo2.png",
 
   // Uses bootswatch themes (http://bootswatch.com/)
   // Valid options:
@@ -49,7 +49,7 @@
   // wallet settings
   "wallet": {
     "host": "localhost",
-    "port": 34229,
+    "port": 44229,
     "user": "rpcuser",
     "pass": "rpcpassword"
   },
@@ -86,9 +86,9 @@
   // txhash = "merkleroot"
   "api": {
     "blockindex": 1,
-    "blockhash": "ce8a0df339f2edceb99c5325c95b2b0ae752e29de1193f6113549f0e1cae7c91",
-    "txhash": "41759143332febdf456cdad7321899fe6ae23787b5d4f35b9ad187fd3a15ec79",
-    "address": "Sbc92vjRvQLJXwbmgHoac4Nb7A95JastKm"
+    "blockhash": "0741357f5ee729dffdebdc78f0897f4c244788effebb2cda22c5d5947bebd923",
+    "txhash": "4256f5dd0802b0bb406a72f1e96cd52063d2e4d88b6cc9112108957cbeb670dd",
+    "address": "tugar1qnngucju72sfzlh2qqaygnjh58l9nx3c5v7kjqu"
   },
 
   // market settings
@@ -136,7 +136,7 @@
   // genesis_tx = "merkleroot"
   // genexix_block = "hash"
   "genesis_tx": "7677ce2a579cb0411d1c9e6b1e9072b8f537f1e59cb387dacac2daac56e150b0",
-  "genesis_block": "7d5eaec2dbb75f99feadfa524c78b7cabc1d8c8204f79d4f3a83381b811b0adc",
+  "genesis_block": "e0e0e42e493ba7b15f7b0fe1a7e66f73b7fd8b3e6e6a7b0e821a6b95040d3826",
 
   //heavy (enable/disable additional heavy features)
   "heavy": false,
