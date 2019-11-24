@@ -63,7 +63,7 @@
   // menu settings
   "display": {
     "api": true,
-    "markets": false,
+    "markets": true,
     "richlist": true,
     "twitter": true,
     "facebook": false,
@@ -97,10 +97,10 @@
   "markets": {
     "coin": "SUGAR",
     "exchange": "BTC",
-    "enabled": ["bittrex"],
+    "enabled": ["altmarkets"],
     "cryptopia_id": "1658",
     "ccex_key" : "Get-Your-Own-Key",
-    "default": "bittrex"
+    "default": "altmarkets"
   },
 
   // richlist/top100 settings
