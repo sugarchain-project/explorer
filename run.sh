@@ -26,7 +26,7 @@ do
     rm -f ./tmp/index.pid
     rm -f ./tmp/delete.me
     node ./scripts/sync.js index update
-    # node scripts/sync.js market
+    node scripts/sync.js market
     node ./scripts/peers.js
     echo "***** sleep 5 seconds *****"
     sleep 5.0
