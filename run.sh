@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # coind daemon
-$HOME/sugarchain-0.16.3/bin/sugarchaind -server=1 -rpcuser=rpcuser -rpcpassword=rpcpassword -txindex -daemon -uacommnet=explorer
-$HOME/sugarchain-v0.16.3/src/sugarchaind -server=1 -rpcuser=rpcuser -rpcpassword=rpcpassword -txindex -daemon -uacommnet=explorer
+$HOME/sugarchain-0.16.3/bin/sugarchaind -server=1 -rpcuser=rpcuser -rpcpassword=rpcpassword -txindex -daemon # -uacommnet=explorer
+$HOME/sugarchain-v0.16.3/src/sugarchaind -server=1 -rpcuser=rpcuser -rpcpassword=rpcpassword -txindex -daemon # -uacommnet=explorer
 
 # waiting for daemon
 echo "***** sleep 30 seconds for daemon *****"
