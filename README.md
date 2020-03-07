@@ -419,6 +419,7 @@ Check your nvm version! In this case using `v0.10.28`
 ```
 # delete logs (explorer)
 @reboot rm $HOME/.sugarchain/debug.log
+@reboot rm $HOME/run.log
 @reboot $HOME/.nvm/v0.10.28/bin/forever cleanlogs
 ```
 
