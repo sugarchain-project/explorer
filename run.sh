@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # coind daemon
-$HOME/sugarchain-0.16.3/bin/sugarchaind -server=1 -rpcuser=rpcuser -rpcpassword=rpcpassword -txindex -daemon # -uacommnet=explorer
-$HOME/sugarchain-v0.16.3/src/sugarchaind -server=1 -rpcuser=rpcuser -rpcpassword=rpcpassword -txindex -daemon # -uacommnet=explorer
+$HOME/sugarchain-0.16.3/bin/sugarchaind -server=1 -rpcuser=rpcuser -rpcpassword=rpcpassword -txindex -daemon -prunedebuglogfile # -uacommnet=explorer
+$HOME/sugarchain-v0.16.3/src/sugarchaind -server=1 -rpcuser=rpcuser -rpcpassword=rpcpassword -txindex -daemon -prunedebuglogfile # -uacommnet=explorer
 
 # waiting for daemon
-echo "***** sleep 30 seconds for daemon *****"
-sleep 30.0
+echo "***** sleep 120 seconds for daemon *****"
+sleep 120.0
 
 # start explorer
 cd $HOME/explorer/
