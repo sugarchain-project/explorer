@@ -421,6 +421,9 @@ Check your nvm version! In this case using `v0.10.28`
 @reboot rm $HOME/.sugarchain/debug.log
 @reboot rm $HOME/run.log
 @reboot $HOME/.nvm/v0.10.28/bin/forever cleanlogs
+
+# truncate forever
+@daily for i in $HOME/.forever/*.log; do cat /dev/null > $i; done
 ```
 
 ## MISC
