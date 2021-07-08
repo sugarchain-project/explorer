@@ -31,3 +31,5 @@ node_modules
 # *.png
 
 tmp/
+tmp/delete.me
+tmp/cluster.pid
