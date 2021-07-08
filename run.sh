@@ -2,11 +2,10 @@
 
 # coind daemon
 $HOME/sugarchain-0.16.3/bin/sugarchaind -server=1 -rpcuser=rpcuser -rpcpassword=rpcpassword -txindex -daemon -prunedebuglogfile # -uacommnet=explorer
-$HOME/sugarchain-v0.16.3/src/sugarchaind -server=1 -rpcuser=rpcuser -rpcpassword=rpcpassword -txindex -daemon -prunedebuglogfile # -uacommnet=explorer
 
 # waiting for daemon
-echo "***** sleep 120 seconds for daemon *****"
-sleep 120.0
+echo "***** sleep 1 hour for daemon *****"
+sleep 1h
 
 # start explorer
 cd $HOME/explorer/
@@ -15,8 +14,8 @@ rm -f ./tmp/index.pid
 $HOME/.nvm/v0.10.28/bin/forever start ./bin/cluster
 
 # waiting for explorer
-echo "***** sleep 30 seconds for explorer *****"
-sleep 30.0
+echo "***** sleep 5 minutes for explorer *****"
+sleep 5m
 
 # update
 while true;
@@ -28,6 +27,6 @@ do
     node ./scripts/sync.js index update
     node scripts/sync.js market
     node ./scripts/peers.js
-    echo "***** sleep 5 seconds *****"
+    echo "***** sleep 5 seconds for while_loop *****"
     sleep 5.0
 done
