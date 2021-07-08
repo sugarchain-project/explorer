@@ -4,8 +4,8 @@
 $HOME/sugarchain-0.16.3/bin/sugarchaind -server=1 -rpcuser=rpcuser -rpcpassword=rpcpassword -txindex -daemon -prunedebuglogfile # -uacommnet=explorer
 
 # waiting for daemon
-echo "***** sleep 1 hour for daemon *****"
-sleep 1h
+echo "***** wait 10 minutes for daemon *****"
+sleep 10m
 
 # start explorer
 cd $HOME/explorer/
@@ -14,7 +14,7 @@ rm -f ./tmp/index.pid
 $HOME/.nvm/v0.10.28/bin/forever start ./bin/cluster
 
 # waiting for explorer
-echo "***** sleep 5 minutes for explorer *****"
+echo "***** wait 5 minutes for explorer *****"
 sleep 5m
 
 # update
